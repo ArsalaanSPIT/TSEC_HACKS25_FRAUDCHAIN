@@ -7,10 +7,10 @@ import axios from "axios";
 export default function App() {
 
 
-  const CONTRACT_ADDRESS = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
-  const CONTRACT_ABI = [ /* Add ABI Here */ ];
-  const PINATA_API_KEY = "YOUR_PINATA_API_KEY";
-  const PINATA_SECRET_KEY = "YOUR_PINATA_SECRET_KEY";
+  // const CONTRACT_ADDRESS = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
+  // const CONTRACT_ABI = [ /* Add ABI Here */ ];
+  // const PINATA_API_KEY = "YOUR_PINATA_API_KEY";
+  // const PINATA_SECRET_KEY = "YOUR_PINATA_SECRET_KEY";
 
 
   // code for saving data
@@ -99,26 +99,27 @@ export default function App() {
   // };
 
   return (
-    <div className="flex gap-x-4">
-      <Calendar
-        aria-label="Date (Uncontrolled)"
-        defaultValue={parseDate('2020-02-03')}
-      />
-    </div>
+    <>
+      <div className="flex gap-x-4">
+        <Calendar
+          aria-label="Date (Uncontrolled)"
+          defaultValue={parseDate("2020-02-03")}
+        />
+      </div>
   
-    <div>
-      <button onClick={connectMetaMask}>
-        {walletAddress ? `Connected: ${walletAddress}` : "Connect to Wallet"}
-      </button>
-
-      {/* {!isRegistered && walletAddress && (
-        <>
-          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
-          <button onClick={registerUser}>Upload & Register</button>
-        </>
-      )} */}
-    </div>
+      <div>
+        <button onClick={connectMetaMask}>
+          {walletAddress ? `Connected: ${walletAddress}` : "Connect to Wallet"}
+        </button>
+  
+        {/* {!isRegistered && walletAddress && (
+          <>
+            <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+            <button onClick={registerUser}>Upload & Register</button>
+          </>
+        )} */}
+      </div>
+    </>
   );
-};
-
-export default App;
+  
+}
