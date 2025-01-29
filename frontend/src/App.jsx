@@ -1,13 +1,12 @@
-import { Calendar } from '@heroui/react';
-import { parseDate } from '@internationalized/date';
-
-export default function App() {
+import { useState } from 'react';
+import './App.css';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+function App() {
   return (
-    <div className="flex gap-x-4">
-      <Calendar
-        aria-label="Date (Uncontrolled)"
-        defaultValue={parseDate('2020-02-03')}
-      />
-    </div>
+    <BrowserRouter>
+      <Routes>{/* <Route path='/' element={<></>}></Route> */}</Routes>
+    </BrowserRouter>
   );
 }
+
+export default App;
