@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HeroUIProvider } from '@heroui/react';
-import App from './App';
+import App from './ConnectWallet';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

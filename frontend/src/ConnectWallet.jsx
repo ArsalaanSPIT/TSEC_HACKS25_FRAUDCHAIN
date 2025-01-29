@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
 
-export default function App() {
+export default function ConnectWallet() {
 
 
   // const CONTRACT_ADDRESS = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
