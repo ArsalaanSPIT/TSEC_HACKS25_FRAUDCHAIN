@@ -1,22 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import { Calendar } from '@heroui/react';
+import { parseDate } from '@internationalized/date';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        
-      </div>
-      
-    </>
-  )
+    <div className="flex gap-x-4">
+      <Calendar
+        aria-label="Date (Uncontrolled)"
+        defaultValue={parseDate('2020-02-03')}
+      />
+    </div>
+  );
 }
-
-export default App
