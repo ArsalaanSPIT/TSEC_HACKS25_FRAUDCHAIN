@@ -1,5 +1,3 @@
-import { Calendar } from '@heroui/react';
-import { parseDate } from '@internationalized/date';
 import { useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
@@ -100,12 +98,7 @@ export default function App() {
 
   return (
     <>
-      <div className="flex gap-x-4">
-        <Calendar
-          aria-label="Date (Uncontrolled)"
-          defaultValue={parseDate("2020-02-03")}
-        />
-      </div>
+      
   
       <div>
         <button onClick={connectMetaMask}>
