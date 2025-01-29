@@ -13,7 +13,7 @@ export default function ConnectWallet() {
 
   // code for saving data
   const [walletAddress, setWalletAddress] = useState("");
-  // const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null);
   // const [isRegistered, setIsRegistered] = useState(false);
 
   const connectMetaMask = async () => {
@@ -25,7 +25,7 @@ export default function ConnectWallet() {
     try {
       const provider = new ethers.BrowserProvider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       const address = await signer.getAddress();
 
       setWalletAddress(address);
@@ -47,54 +47,56 @@ export default function ConnectWallet() {
     }
   };
 
-  // const uploadToIPFS = async () => {
-  //   if (!file) {
-  //     alert("No file selected!");
-  //     return;
-  //   }
+  const uploadToIPFS = async () => {
+    if (!file) {
+      alert("No file selected!");
+      return;
+    }
 
-  //   const formData = new FormData();
-  //   formData.append("file", file);
+    const formData = new FormData();
+    formData.append("file", file);
 
-  //   try {
-  //     const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
-  //       headers: {
-  //         "Content-Type": "multipart/form-data",
-  //         "pinata_api_key": PINATA_API_KEY,
-  //         "pinata_secret_api_key": PINATA_SECRET_KEY,
-  //       },
-  //     });
+    try {
+      const response = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "pinata_api_key": import.meta.env.VITE_PINATA_API_KEY,
+          "pinata_secret_api_key": import.meta.env.VITE_PINATA_SECRET_KEY,
+        },
+      });
+      console.log(response)
 
-  //     return response.data.IpfsHash;
-  //   } catch (error) {
-  //     console.error("Upload Error:", error);
-  //     return null;
-  //   }
-  // };
+      return response.data.IpfsHash;
+    } catch (error) {
+      console.error("Upload Error:", error);
+      return null;
+    }
+  };
 
-  // const registerUser = async () => {
-  //   if (!walletAddress) {
-  //     alert("Connect MetaMask first!");
-  //     return;
-  //   }
+  const registerUser = async () => {
+    // if (!walletAddress) {
+    //   alert("Connect MetaMask first!");
+    //   return;
+    // }
 
-  //   const ipfsHash = await uploadToIPFS();
-  //   if (!ipfsHash) return;
+    const ipfsHash = await uploadToIPFS();
+    console.log(ipfsHash)
+    if (!ipfsHash) return;
 
-  //   try {
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const signer = provider.getSigner();
-  //     const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+    // try {
+    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+    //   const signer = provider.getSigner();
+    //   const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
 
-  //     const tx = await contract.registerUser(ipfsHash);
-  //     await tx.wait();
+    //   const tx = await contract.registerUser(ipfsHash);
+    //   await tx.wait();
 
-  //     alert("User registered successfully!");
-  //     setIsRegistered(true);
-  //   } catch (error) {
-  //     console.error("Registration Error:", error);
-  //   }
-  // };
+    //   alert("User registered successfully!");
+    //   setIsRegistered(true);
+    // } catch (error) {
+    //   console.error("Registration Error:", error);
+    // }
+  };
 
   return (
     <>
@@ -105,12 +107,15 @@ export default function ConnectWallet() {
           {walletAddress ? `Connected: ${walletAddress}` : "Connect to Wallet"}
         </button>
   
-        {/* {!isRegistered && walletAddress && (
+        {/* {!isRegistered  */}
+        {/* &&  */}
+        {/* {walletAddress && ( */}
           <>
             <input type="file" onChange={(e) => setFile(e.target.files[0])} />
             <button onClick={registerUser}>Upload & Register</button>
+    
           </>
-        )} */}
+        {/* )} */}
       </div>
     </>
   );

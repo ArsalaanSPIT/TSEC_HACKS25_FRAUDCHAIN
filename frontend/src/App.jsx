@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import ConnectWallet from '';
+import ConnectWallet from './components/ConnectWallet';
+
+
 function App() {
   return (
     <BrowserRouter>
